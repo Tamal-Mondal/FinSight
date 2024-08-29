@@ -1,6 +1,8 @@
 import os
 from crewai import Agent, Task, Crew, Process
 from langchain_openai import ChatOpenAI
+from langchain_cohere import ChatCohere
+from langchain.llms import OpenAI
 
 from langchain_community.tools import DuckDuckGoSearchRun
 from langchain_community.tools import BraveSearch
@@ -28,10 +30,21 @@ def getLLM():
     # Create a chat model
     # Using service http://together.ai
 
-    llm = ChatOpenAI(model="NousResearch/Nous-Hermes-2-Mixtral-8x7B-SFT",
+    #model_name = "Qwen/Qwen1.5-14B-Chat"
+    #model_name = "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo"
+    #model_name = "NousResearch/Nous-Hermes-2-Mixtral-8x7B-SFT"
+    #model_name = "meta-llama/Meta-Llama-3-70B-Instruct-Lite"
+    model_name = "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo"
+    llm = ChatOpenAI(model=model_name,
                  temperature=0.7,
                  api_key="ec62094143cbf9e978aa4b62b7ff1698a67a40081475353b65bf9e10bf7b94ea",
                  base_url="https://api.together.xyz")
+    
+    # llm = OpenAI(model_name="gpt-3.5-turbo", openai_api_key=os.getenv("OPENAI_API_KEY"))
+    # llm = ChatOpenAI(model="gpt-3.5-turbo", api_key=os.getenv("OPENAI_API_KEY"))
+    
+    # anthropic_model = Anthropic(api_key=os.getenv('ANTHROPIC_API_KEY'), model_name="claude-v1")
+    # cohere_model = ChatCohere(max_tokens=150, temperature=0.7)
 
     #llm_writer = ChatOpenAI(model="teknium/OpenHermes-2p5-Mistral-7B",
     #                        temperature=0.7,

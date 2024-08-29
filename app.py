@@ -34,7 +34,7 @@ def getInsights():
         print(company, year, form_type, quarter)
         quarter = "" if form_type == "10K" else quarter
         report = generateReport(company, year, form_type, quarter)
-        report.replace("\n", "\n\n\n")
+        report = report.replace("\n", "<br>")
         result = {"report": report}
 
         # Return the JSON data back in the response
@@ -56,8 +56,18 @@ def getStockPrediction():
         
         company = data["company"]
         
-        report = analyseStock(company)
-        result = {"report": report}
+        report = analyseStock(company).strip()
+        
+        for delimiter in ['VERDICT:', 'RISK:', 'GROWTH POTENTIAL:', 'ADVICE:']:
+            report = report.replace(delimiter, '$$')
+
+        report = report.split('$$')
+        result = {
+                    "verdict": report[1].strip(), 
+                    "risk": report[2].strip(), 
+                    "growth-potential": report[3].strip(), 
+                    "advice": report[4].strip()
+                 }
 
         # Return the JSON data back in the response
         return result, 200
@@ -85,6 +95,7 @@ def askQuestion():
         print(company, year, form_type, quarter, question)
         quarter = "" if form_type == "10K" else quarter
         answer = answerQuestion(company, year, form_type, quarter, question)
+        answer = answer.replace("\n", "<br>")
         result = {"answer": answer}
 
         # Return the JSON data back in the response

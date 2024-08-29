@@ -12,7 +12,12 @@ from langchain_openai import ChatOpenAI
 # from langchain_mistralai.chat_models import ChatMistralAI
 # from langchain_anthropic import ChatAnthropic
 
-llm = ChatOpenAI(model="NousResearch/Nous-Hermes-2-Mixtral-8x7B-SFT",
+#model_name = "Qwen/Qwen1.5-14B-Chat"
+#model_name = "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo"
+#model_name = "NousResearch/Nous-Hermes-2-Mixtral-8x7B-SFT"
+#model_name = "meta-llama/Meta-Llama-3-70B-Instruct-Lite"
+model_name = "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo"
+llm = ChatOpenAI(model=model_name,
                  temperature=0.7,
                  api_key="ec62094143cbf9e978aa4b62b7ff1698a67a40081475353b65bf9e10bf7b94ea",
                  base_url="https://api.together.xyz")
@@ -75,8 +80,8 @@ class StockAnalysisAgents():
       response_template = """Example Output about a company stocks
         
                           VERDICT: buy
-                          RISK: medium
-                          GROWTH POTENTIAL: CAGR of 20% over 5 years
+                          RISK: high
+                          GROWTH POTENTIAL: CAGR of 35% over 5 years
                           ADVICE: This growth is primarily driven by increased demand for the electric 
                                   vehicles. The financial statements show a strong balance sheet with a cash and cash equivalent position 
                                   of $17.5 billion...but its profit margin is still lower than many established automakers."""

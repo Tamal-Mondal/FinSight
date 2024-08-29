@@ -91,23 +91,21 @@ class StockAnalysisTasks():
               EDGAR filings along with insider trading activity, and 
               upcoming events like earnings.
 
-              Your final answer MUST be a detailed report that would include VERDICT (buy, sale, not sure), 
+              Your final answer MUST be a crisp report having 4 sections: VERDICT (buy, don't buy, not sure), 
               RISK (low, medium, high), GROWTH POTENTIAL (in % in next 5 years), and 
               ADVICE (it's general advice on company health and future prospects that are backed by numbers).
               
               {self.__tip_section()}
             """),
-            # expected_output="""
-            #             VERDICT: buy
-            #             RISK: medium
-            #             GROWTH POTENTIAL: CAGR of 20% over 5 years
-            #             ADVICE: This growth is primarily driven by increased demand for the electric 
-            #                     vehicles. The financial statements show a strong balance sheet with a cash and cash equivalent position 
-            #                     of $17.5 billion. However, one red flag that stands out is the continuous high volume of insider 
-            #                     selling, which could be a cause for concern for potential investors. In terms of its industry peers, 
-            #                     company's growth rate outpaces most of its competitors, but its profit margin is still lower than many 
-            #                     established automakers.
-            #             """,
+            expected_output="""
+                        VERDICT: buy
+                        RISK: medium
+                        GROWTH POTENTIAL: CAGR of 25% over 5 years
+                        ADVICE: This growth is primarily driven by increased demand for the electric 
+                                vehicles. The financial statements show a ..... industry peers, 
+                                company's growth rate outpaces most of its competitors, but its 
+                                profit margin is still lower than many established automakers.
+                        """,
             agent=agent
         )
 
