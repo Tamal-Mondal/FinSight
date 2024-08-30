@@ -91,15 +91,15 @@ class StockAnalysisTasks():
               EDGAR filings along with insider trading activity, and 
               upcoming events like earnings.
 
-              Your final answer MUST be a crisp report having 4 sections: VERDICT (buy, don't buy, not sure), 
-              RISK (low, medium, high), GROWTH POTENTIAL (in % in next 5 years), and 
+              Your final answer MUST be a crisp report having 4 sections: VERDICT (Buy, Don't buy, Not sure), 
+              RISK (Low, Medium, High), GROWTH POTENTIAL (in % in next 5 years), and 
               ADVICE (it's general advice on company health and future prospects that are backed by numbers).
               
               {self.__tip_section()}
             """),
             expected_output="""
-                        VERDICT: buy
-                        RISK: medium
+                        VERDICT: Buy
+                        RISK: Medium
                         GROWTH POTENTIAL: CAGR of 25% over 5 years
                         ADVICE: This growth is primarily driven by increased demand for the electric 
                                 vehicles. The financial statements show a ..... industry peers, 

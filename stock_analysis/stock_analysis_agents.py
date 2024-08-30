@@ -79,8 +79,8 @@ class StockAnalysisAgents():
       ],
       response_template = """Example Output about a company stocks
         
-                          VERDICT: buy
-                          RISK: high
+                          VERDICT: Buy
+                          RISK: High
                           GROWTH POTENTIAL: CAGR of 35% over 5 years
                           ADVICE: This growth is primarily driven by increased demand for the electric 
                                   vehicles. The financial statements show a strong balance sheet with a cash and cash equivalent position 
