@@ -4,7 +4,7 @@ from flask_cors import CORS, cross_origin
 from report_generation.driver import generateReport
 from stock_analysis.driver import analyseStock
 from qna_bot.driver import answerQuestion
-from visualization_generation.driver import generateVisualizations
+from visualization_generation.fetchDataFromQuickFS import getFinanceData
 
 app = Flask(__name__)
 
@@ -133,9 +133,22 @@ def askQuestion():
 @app.route('/visualization', methods=['POST', 'OPTIONS'])
 @cross_origin()
 def getVisualization():
-    data = request.json
-    generateVisualizations()
-    return jsonify(data)
+    try:
+        # Access the JSON data sent in the request
+        data = request.get_json()
+
+        # Check if data is valid
+        if not data:
+            return jsonify({"error": "Invalid or missing JSON data"}), 400
+
+        company = data["company"]
+        data = getFinanceData(company)
+        
+        # Return the JSON data back in the response
+        return data, 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
