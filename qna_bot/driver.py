@@ -18,7 +18,7 @@ def getLLM():
     model_name = "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo"
     llm = ChatOpenAI(model=model_name,
                      temperature=0.7,
-                     api_key="ec62094143cbf9e978aa4b62b7ff1698a67a40081475353b65bf9e10bf7b94ea",
+                     api_key="d1a8e935548aec33569f825c0d297a26733226000b730c62e08f0c6945740055",
                      base_url="https://api.together.xyz")
     return llm
 

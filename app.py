@@ -4,6 +4,7 @@ from flask_cors import CORS, cross_origin
 from report_generation.driver import generateReport
 from stock_analysis.driver import analyseStock
 from qna_bot.driver import answerQuestion
+from visualization_generation.driver import generateVisualizations
 
 app = Flask(__name__)
 
@@ -32,7 +33,7 @@ def getInsights():
         company = data["company"]
         year = data["year"]
         form_type = data["form-type"]
-        quarter = data["quarter"]
+        quarter = data["quarter"] if "quarter" in data else ""
         
         if STATIC_OUTPUT and company == "Oracle":
             result = {
@@ -107,7 +108,7 @@ def askQuestion():
         company = data["company"]
         year = data["year"]
         form_type = data["form-type"]
-        quarter = data["quarter"]
+        quarter = data["quarter"] if "quarter" in data else ""
         question = data["question"]
         
         if STATIC_OUTPUT and company == "Microsoft":
@@ -133,6 +134,7 @@ def askQuestion():
 @cross_origin()
 def getVisualization():
     data = request.json
+    generateVisualizations()
     return jsonify(data)
 
 if __name__ == '__main__':
