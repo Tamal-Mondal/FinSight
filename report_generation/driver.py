@@ -79,7 +79,7 @@ def getAgents(llm):
         llm=llm)
 
     writer = Agent(
-        role='Senior editor',
+        role='Senior Editor',
         goal='Writes professional quality articles that are easy to understand',
         backstory="""You are a details-oriented senior editor at the Wall Street Journal known for your insightful and engaging 
                   articles. You transform complex concepts into factual and impactful narratives.""",
@@ -144,7 +144,8 @@ def getTasks(company, year, form_type, quarter, researcher, visionary, writer):
             Please ensure that the report (one page) is written in a professional tone and style, and that all information is sourced 
             from {company}'s SEC {form_type} filing {"" if quarter == "" else " for " + quarter} of year {year}. 
             
-            Write a one page report in format and style worthy to be published in the wall street journal.""",
+            Write a one-page report in a format and style worthy to be published in the Wall Street Journal. 
+            Always start the report with a meaningful and interesting tagline.""",
         # expected_output=
         #     f"""A detailed comprehensive report based on the research and insights from the Senior Research Analyst and Visionary""",
         agent=writer)

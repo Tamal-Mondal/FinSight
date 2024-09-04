@@ -8,6 +8,9 @@ from stock_analysis.tools.sec_tools import SECTools
 
 from langchain.tools.yahoo_finance_news import YahooFinanceNewsTool
 
+from dotenv import load_dotenv
+load_dotenv()
+
 from langchain_openai import ChatOpenAI
 # from langchain_mistralai.chat_models import ChatMistralAI
 # from langchain_anthropic import ChatAnthropic
@@ -31,7 +34,7 @@ class StockAnalysisAgents():
       backstory="""Known as the BEST research analyst, you're skilled in sifting through news, company announcements, 
                 and market sentiments. Now you're responsible for market research on a super 
                 important customer""",
-      verbose=True,
+      verbose=bool(int(os.environ["LOG_LEVEL"])),
       llm = llm,
       tools=[
         BrowserTools.scrape_and_summarize_website,
@@ -50,7 +53,7 @@ class StockAnalysisAgents():
       backstory="""The most seasoned financial analyst with lots of expertise in stock market analysis and investment
                 strategies. You are a critical thinker and can extract effective insights from all the financial data that 
                 investment advisors use to make important decisions.""",
-      verbose=True,
+      verbose=bool(int(os.environ["LOG_LEVEL"])),
       llm = llm,
       tools=[
         BrowserTools.scrape_and_summarize_website,
@@ -68,7 +71,7 @@ class StockAnalysisAgents():
       backstory="""You're the most experienced investment advisor and you combine various analytical insights to formulate
                 strategic investment advice that are backed by numbers. You are now working for a super important customer whom 
                 you need to impress. You MUST have to keep the answers crisp and as per the specified format.""",
-      verbose=True,
+      verbose=bool(int(os.environ["LOG_LEVEL"])),
       llm = llm,
       tools=[
         BrowserTools.scrape_and_summarize_website,
@@ -94,7 +97,7 @@ class StockAnalysisAgents():
         backstory="""You are a details-oriented senior editor at the Wall Street Journal known for your insightful and engaging 
                   articles. You transform complex concepts into factual and impactful narratives. You MUST have to keep the answers 
                   crisp and as per the specified format.""",
-        verbose=True,
+        verbose=bool(int(os.environ["LOG_LEVEL"])),
         llm=llm,
         response_template = """Example Output about a company stocks
         

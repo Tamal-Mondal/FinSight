@@ -1,3 +1,4 @@
+import os
 from crewai import Crew
 from textwrap import dedent
 
@@ -33,7 +34,7 @@ class FinancialCrew:
                 investment_advisor_agent,
             ],
             tasks=[research_task, financial_task, filings_task, recommend_task],
-            verbose=True,
+            verbose=bool(int(os.environ["LOG_LEVEL"]))
         )
 
         result = crew.kickoff()

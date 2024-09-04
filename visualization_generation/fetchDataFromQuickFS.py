@@ -18,7 +18,6 @@ def get_ticker_and_exchange(company_name):
     else:
         return None, None
 
-
 def formatData1(data, metric):
     result = [
         {"id": 0, "series": "2014", "group": metric, "value": data[0]},
@@ -34,7 +33,6 @@ def formatData1(data, metric):
     ]
     return result
 
-
 def formatData2(data, metric):
     result = [
         {"id": 0, "series": metric, "year": 2014, "value": data[0], "size": 100},
@@ -49,7 +47,6 @@ def formatData2(data, metric):
         {"id": 4, "series": metric, "year": 2023, "value": data[9], "size": 100},
     ]
     return result
-
 
 def getFinanceData(company_name):
     ticker, exchange = get_ticker_and_exchange(company_name)
@@ -86,4 +83,4 @@ def getFinanceData(company_name):
     data4 = formatData2(data, metric_full_names[3])
     print("\n", data4)
 
-    return [data1, data2, data3, data4]
+    return {"revenue": data1, "gross_profit": data2, "eps_basic": data3, "fcf": data4}
